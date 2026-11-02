@@ -1,0 +1,74 @@
+name: Build and Release GramScribe
+
+on:
+  push:
+    tags:
+      - 'v*'
+  workflow_dispatch:
+    inputs:
+      tag_name:
+        description: 'Tag name for release (e.g. v1.3.0)'
+        required: false
+        default: 'v1.3.0'
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    name: Build Packages & Create Release
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Build CRX and ZIP Packages
+        run: |
+          mkdir -p build_artifacts
+
+          # 1. Build portable ZIP package
+          zip -r build_artifacts/GramScribe.zip . -x ".git/*" ".github/*" "build_artifacts/*" "*.crx" "*.pem"
+
+          # 2. Generate RSA signing key for CRX3
+          openssl genrsa 2048 > /tmp/gramscribe_key.pem
+
+          # 3. Pack CRX3 using Google Chrome CLI
+          if command -v google-chrome &> /dev/null; then
+            google-chrome --headless --no-sandbox --pack-extension=${PWD} --pack-extension-key=/tmp/gramscribe_key.pem || true
+            find .. -maxdepth 1 -name "*.crx" -exec mv {} build_artifacts/GramScribe.crx \; 2>/dev/null || true
+          fi
+
+          # 4. Fallback packaging with crx3 if not already generated
+          if [ ! -f build_artifacts/GramScribe.crx ]; then
+            npx --yes crx3 -p /tmp/gramscribe_key.pem -o build_artifacts/GramScribe.crx .
+          fi
+
+          # Verify generated files
+          ls -lh build_artifacts/
+
+      - name: Determine Release Tag
+        id: release_tag
+        run: |
+          if [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
+            echo "tag=${{ github.event.inputs.tag_name }}" >> $GITHUB_OUTPUT
+          else
+            echo "tag=${{ github.ref_name }}" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Publish GitHub Release with CRX and ZIP
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: ${{ steps.release_tag.outputs.tag }}
+          name: GramScribe ${{ steps.release_tag.outputs.tag }}
+          draft: false
+          prerelease: false
+          generate_release_notes: true
+          files: |
+            build_artifacts/GramScribe.crx
+            build_artifacts/GramScribe.zip
