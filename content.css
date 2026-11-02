@@ -1,0 +1,853 @@
+/* Instagram Post Details Grabber & Profile Batch Scraper - Styles */
+
+/* 1. Action Bar Icon Buttons (Matching Like, Comment, Share icons at bottom) */
+.ig-grabber-action-bar-group {
+  display: inline-flex !important;
+  align-items: center !important;
+  vertical-align: middle !important;
+  flex-shrink: 0 !important;
+}
+
+.ig-grabber-icon-btn {
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  padding: 8px !important;
+  background: transparent !important;
+  border: none !important;
+  color: rgb(var(--ig-primary-text, 245, 245, 245)) !important;
+  cursor: pointer !important;
+  transition: transform 0.15s ease, opacity 0.15s ease, color 0.15s ease !important;
+  position: relative !important;
+  line-height: 1 !important;
+  box-sizing: border-box !important;
+  user-select: none !important;
+  outline: none !important;
+  flex-shrink: 0 !important;
+}
+
+.ig-grabber-icon-btn:focus,
+.ig-grabber-icon-btn:focus-visible {
+  outline: none !important;
+  box-shadow: none !important;
+}
+
+/* Standalone Reel & Single Post Page - Widened Layout to prevent icon overcrowding */
+body:not(:has(div[role="dialog"])) main div[style*="--x-maxWidth"],
+main:not(:has(div[role="dialog"])) div[style*="--x-maxWidth"] {
+  max-width: 820px !important;
+  --x-maxWidth: min(100%, 820px) !important;
+}
+
+body:not(:has(div[role="dialog"])) .x4h1yfo,
+main:not(:has(div[role="dialog"])) .x4h1yfo,
+body:not(:has(div[role="dialog"])) [style*="--media-info"] {
+  width: 420px !important;
+  min-width: 420px !important;
+  --media-info: 420px !important;
+}
+
+.ig-grabber-icon-btn:hover {
+  opacity: 0.65 !important;
+  transform: scale(1.1) !important;
+}
+
+.ig-grabber-icon-btn:active {
+  transform: scale(0.92) !important;
+}
+
+.ig-grabber-icon-btn svg {
+  width: 24px !important;
+  height: 24px !important;
+  min-width: 24px !important;
+  min-height: 24px !important;
+  max-width: 24px !important;
+  max-height: 24px !important;
+  display: block !important;
+  stroke: currentColor !important;
+  fill: none !important;
+}
+
+/* Transcript Icon Active State (When panel is open) */
+.ig-grabber-icon-btn.active {
+  color: #0095f6 !important;
+  transform: scale(1.08) !important;
+}
+
+.ig-grabber-icon-btn.active svg {
+  stroke: #0095f6 !important;
+}
+
+/* Green dot indicator when transcript is ready */
+.ig-grabber-icon-btn.has-transcript::after {
+  content: "" !important;
+  position: absolute !important;
+  top: 6px !important;
+  right: 6px !important;
+  width: 6px !important;
+  height: 6px !important;
+  background: #10b981 !important;
+  border-radius: 50% !important;
+  border: 1.5px solid #000000 !important;
+}
+
+.ig-grabber-icon-btn.copied svg {
+  stroke: #10b981 !important;
+}
+
+/* Transcript Header Button */
+.ig-header-transcript-btn {
+  background: rgba(255, 255, 255, 0.08) !important;
+  color: #f5f5f5 !important;
+  border: 1px solid rgba(255, 255, 255, 0.16) !important;
+  position: relative !important;
+}
+
+.ig-header-transcript-btn:hover {
+  background: rgba(255, 255, 255, 0.16) !important;
+  border-color: rgba(255, 255, 255, 0.28) !important;
+}
+
+.ig-header-transcript-btn.active {
+  background: rgba(0, 149, 246, 0.25) !important;
+  color: #ffffff !important;
+  border-color: #0095f6 !important;
+  box-shadow: 0 0 10px rgba(0, 149, 246, 0.35) !important;
+}
+
+.ig-header-transcript-btn.has-transcript::after {
+  content: "" !important;
+  position: absolute !important;
+  top: -2px !important;
+  right: -2px !important;
+  width: 7px !important;
+  height: 7px !important;
+  background: #10b981 !important;
+  border-radius: 50% !important;
+  border: 1.5px solid #000000 !important;
+}
+
+/* In-Modal Transcript Panel Overlay (Fills the entire caption panel) */
+.ig-post-transcript-panel {
+  position: absolute !important;
+  top: 0 !important;
+  left: 0 !important;
+  right: 0 !important;
+  bottom: 0 !important;
+  width: 100% !important;
+  height: 100% !important;
+  background: #000000 !important;
+  display: flex !important;
+  flex-direction: column !important;
+  z-index: 100 !important;
+  box-sizing: border-box !important;
+  overflow: hidden !important;
+  animation: igTranscriptSlideDown 0.18s cubic-bezier(0.16, 1, 0.3, 1) !important;
+}
+
+@keyframes igTranscriptSlideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes igSpin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.ig-ptp-header {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  padding: 11px 16px !important;
+  border-bottom: 1px solid #262626 !important;
+  background: #0a0a0a !important;
+  flex-shrink: 0 !important;
+}
+
+.ig-ptp-title {
+  display: flex !important;
+  align-items: center !important;
+  gap: 8px !important;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif !important;
+  font-size: 13px !important;
+  font-weight: 700 !important;
+  color: #f5f5f5 !important;
+  letter-spacing: 0.2px !important;
+}
+
+.ig-ptp-title svg {
+  width: 14px !important;
+  height: 14px !important;
+  color: #0095f6 !important;
+  stroke: currentColor !important;
+  stroke-width: 2 !important;
+  fill: none !important;
+}
+
+.ig-ptp-actions {
+  display: flex !important;
+  align-items: center !important;
+  gap: 8px !important;
+}
+
+.ig-ptp-btn-copy {
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 5px !important;
+  background: rgba(255, 255, 255, 0.1) !important;
+  color: #f5f5f5 !important;
+  border: 1px solid rgba(255, 255, 255, 0.15) !important;
+  border-radius: 6px !important;
+  padding: 4px 10px !important;
+  font-size: 11.5px !important;
+  font-weight: 600 !important;
+  cursor: pointer !important;
+  transition: all 0.15s ease !important;
+  font-family: inherit !important;
+}
+
+.ig-ptp-btn-copy:hover {
+  background: rgba(255, 255, 255, 0.18) !important;
+}
+
+.ig-ptp-btn-copy.copied {
+  background: #10b981 !important;
+  color: #ffffff !important;
+  border-color: #10b981 !important;
+}
+
+.ig-ptp-btn-copy svg {
+  width: 12px !important;
+  height: 12px !important;
+  stroke: currentColor !important;
+  stroke-width: 2 !important;
+  fill: none !important;
+}
+
+.ig-ptp-btn-close {
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  width: 26px !important;
+  height: 26px !important;
+  background: transparent !important;
+  border: none !important;
+  color: #a8a8a8 !important;
+  border-radius: 50% !important;
+  cursor: pointer !important;
+  transition: all 0.15s ease !important;
+  padding: 0 !important;
+}
+
+.ig-ptp-btn-close:hover {
+  background: rgba(255, 255, 255, 0.1) !important;
+  color: #ffffff !important;
+}
+
+.ig-ptp-btn-close svg {
+  width: 15px !important;
+  height: 15px !important;
+  stroke: currentColor !important;
+  stroke-width: 2 !important;
+  fill: none !important;
+}
+
+.ig-ptp-body {
+  flex: 1 1 auto !important;
+  display: flex !important;
+  flex-direction: column !important;
+  overflow-y: auto !important;
+  padding: 16px !important;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif !important;
+  box-sizing: border-box !important;
+}
+
+.ig-ptp-body::-webkit-scrollbar {
+  width: 6px !important;
+}
+.ig-ptp-body::-webkit-scrollbar-track {
+  background: transparent !important;
+}
+.ig-ptp-body::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.2) !important;
+  border-radius: 3px !important;
+}
+
+.ig-ptp-text {
+  flex: 1 1 auto !important;
+  font-size: 13.5px !important;
+  line-height: 1.65 !important;
+  color: #e5e5e5 !important;
+  user-select: text !important;
+  word-break: break-word !important;
+  white-space: pre-wrap !important;
+}
+
+.ig-ptp-text p {
+  margin: 0 0 12px 0 !important;
+}
+
+.ig-ptp-text p:last-child {
+  margin-bottom: 0 !important;
+}
+
+.ig-ptp-meta-bar {
+  margin-top: 14px !important;
+  padding-top: 10px !important;
+  border-top: 1px solid #1f1f1f !important;
+  font-size: 11px !important;
+  color: #737373 !important;
+  text-align: right !important;
+  flex-shrink: 0 !important;
+}
+
+.ig-ptp-empty {
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  justify-content: center !important;
+  text-align: center !important;
+  padding: 36px 20px !important;
+  margin: auto !important;
+}
+
+.ig-ptp-empty-icon {
+  font-size: 26px !important;
+  color: #0095f6 !important;
+  margin-bottom: 12px !important;
+}
+
+.ig-ptp-empty-icon svg {
+  width: 28px !important;
+  height: 28px !important;
+  stroke: currentColor !important;
+  stroke-width: 2 !important;
+  fill: none !important;
+}
+
+.ig-ptp-empty-title {
+  font-size: 14.5px !important;
+  font-weight: 700 !important;
+  color: #ffffff !important;
+  margin-bottom: 6px !important;
+}
+
+.ig-ptp-empty-desc {
+  font-size: 12.5px !important;
+  line-height: 1.45 !important;
+  color: #a8a8a8 !important;
+  max-width: 280px !important;
+  margin-bottom: 18px !important;
+}
+
+.ig-ptp-action-btn {
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 8px !important;
+  background: #0095f6 !important;
+  color: #ffffff !important;
+  font-family: inherit !important;
+  font-size: 13px !important;
+  font-weight: 600 !important;
+  border: none !important;
+  border-radius: 8px !important;
+  padding: 9px 18px !important;
+  cursor: pointer !important;
+  transition: all 0.15s ease !important;
+}
+
+.ig-ptp-action-btn:hover {
+  background: #1877f2 !important;
+  transform: translateY(-1px) !important;
+}
+
+.ig-ptp-action-btn svg {
+  width: 14px !important;
+  height: 14px !important;
+}
+
+.ig-ptp-loading {
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  justify-content: center !important;
+  text-align: center !important;
+  padding: 36px 20px !important;
+  margin: auto !important;
+}
+
+.ig-ptp-spinner {
+  width: 28px !important;
+  height: 28px !important;
+  border: 3px solid rgba(0, 149, 246, 0.2) !important;
+  border-top-color: #0095f6 !important;
+  border-radius: 50% !important;
+  animation: igSpin 0.8s linear infinite !important;
+  margin-bottom: 14px !important;
+}
+
+.ig-ptp-loading-title {
+  font-size: 14px !important;
+  font-weight: 600 !important;
+  color: #ffffff !important;
+  margin-bottom: 6px !important;
+}
+
+.ig-ptp-loading-desc {
+  font-size: 12px !important;
+  line-height: 1.45 !important;
+  color: #8e8e8e !important;
+  max-width: 280px !important;
+}
+
+.ig-grabber-header-btn svg {
+  width: 13px !important;
+  height: 13px !important;
+  min-width: 13px !important;
+  max-width: 13px !important;
+  fill: none !important;
+  stroke: currentColor !important;
+  stroke-width: 2 !important;
+  pointer-events: none !important;
+  flex-shrink: 0 !important;
+}
+
+/* 2. Profile Action Row Icon Button (Exact match with Similar Accounts button) */
+.ig-profile-grab-trigger {
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  background-color: rgb(var(--ig-colors-button-secondary-background, var(--ig-secondary-button-background, 38, 38, 38))) !important;
+  color: rgb(var(--ig-primary-text, 245, 245, 245)) !important;
+  border: none !important;
+  border-radius: 12px !important;
+  width: 44px !important;
+  height: 44px !important;
+  min-width: 44px !important;
+  min-height: 44px !important;
+  max-width: 44px !important;
+  max-height: 44px !important;
+  padding: 0 !important;
+  box-sizing: border-box !important;
+  cursor: pointer !important;
+  pointer-events: auto !important;
+  transition: transform 0.15s ease-out, filter 0.15s ease !important;
+  user-select: none !important;
+  margin-left: 8px !important;
+}
+
+.ig-profile-grab-trigger:hover {
+  filter: brightness(1.2) !important;
+}
+
+.ig-profile-grab-trigger:active {
+  transform: scale(0.96) !important;
+  opacity: 0.8 !important;
+}
+
+.ig-profile-grab-trigger svg {
+  width: 18px !important;
+  height: 18px !important;
+  min-width: 18px !important;
+  max-width: 18px !important;
+  fill: currentColor !important;
+  pointer-events: none !important;
+  flex-shrink: 0 !important;
+}
+
+/* 3. Center Screen Modal Overlay */
+.ig-modal-overlay {
+  position: fixed !important;
+  inset: 0 !important;
+  z-index: 2147483646 !important;
+  background: rgba(0, 0, 0, 0.75) !important;
+  backdrop-filter: blur(6px) !important;
+  -webkit-backdrop-filter: blur(6px) !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  animation: igFadeIn 0.2s cubic-bezier(0.16, 1, 0.3, 1) !important;
+}
+
+@keyframes igFadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+/* 4. Center Screen Modal Card */
+.ig-modal-card {
+  width: 380px !important;
+  max-width: 92vw !important;
+  background: rgb(34, 34, 34) !important;
+  border: 1px solid rgb(58, 58, 58) !important;
+  border-radius: 16px !important;
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.85) !important;
+  color: rgb(245, 245, 245) !important;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif !important;
+  font-size: 14px !important;
+  padding: 24px !important;
+  box-sizing: border-box !important;
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 16px !important;
+  user-select: none !important;
+  animation: igCardPop 0.2s cubic-bezier(0.16, 1, 0.3, 1) !important;
+}
+
+@keyframes igCardPop {
+  from { opacity: 0; transform: scale(0.95); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+.ig-modal-header {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  padding-bottom: 12px !important;
+  border-bottom: 1px solid rgb(54, 54, 54) !important;
+  font-weight: 700 !important;
+  font-size: 16px !important;
+  color: #ffffff !important;
+}
+
+.ig-modal-header-title {
+  display: flex !important;
+  align-items: center !important;
+  gap: 8px !important;
+}
+
+.ig-modal-header-title svg {
+  width: 20px !important;
+  height: 20px !important;
+  min-width: 20px !important;
+  max-width: 20px !important;
+  flex-shrink: 0 !important;
+}
+
+.ig-modal-close-btn {
+  background: none !important;
+  border: none !important;
+  color: rgb(168, 168, 168) !important;
+  cursor: pointer !important;
+  font-size: 18px !important;
+  padding: 4px 8px !important;
+  border-radius: 6px !important;
+  line-height: 1 !important;
+  transition: color 0.15s ease, background-color 0.15s ease !important;
+}
+
+.ig-modal-close-btn:hover {
+  color: #ffffff !important;
+  background-color: rgba(255, 255, 255, 0.1) !important;
+}
+
+.ig-modal-body {
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 14px !important;
+}
+
+.ig-modal-row {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  gap: 12px !important;
+}
+
+.ig-modal-row label {
+  color: rgb(215, 215, 215) !important;
+  font-size: 13px !important;
+  font-weight: 500 !important;
+}
+
+.ig-modal-row input,
+.ig-modal-row select {
+  background: rgb(22, 22, 22) !important;
+  border: 1px solid rgb(64, 64, 64) !important;
+  border-radius: 8px !important;
+  color: #ffffff !important;
+  padding: 7px 12px !important;
+  font-size: 13px !important;
+  width: 120px !important;
+  text-align: center !important;
+  outline: none !important;
+  box-sizing: border-box !important;
+}
+
+.ig-modal-row input:focus,
+.ig-modal-row select:focus {
+  border-color: rgb(0, 149, 246) !important;
+}
+
+.ig-modal-btn-start {
+  background: linear-gradient(135deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%) !important;
+  color: #ffffff !important;
+  border: none !important;
+  border-radius: 8px !important;
+  padding: 12px 16px !important;
+  font-size: 14px !important;
+  font-weight: 600 !important;
+  cursor: pointer !important;
+  transition: opacity 0.15s ease, transform 0.1s ease !important;
+  width: 100% !important;
+  margin-top: 4px !important;
+}
+
+.ig-modal-btn-start:hover {
+  opacity: 0.9 !important;
+  transform: translateY(-1px) !important;
+}
+
+/* 5. LIVE SCRAPING HUD & TOP PROGRESS LINE (Fixed directly on Body so it's 100% visible) */
+
+/* Transparent click-shield overlay active during batch scraping (Prevents accidental clicks closing the modal) */
+#ig-scraping-blocker-overlay {
+  position: fixed !important;
+  inset: 0 !important;
+  z-index: 2147483640 !important;
+  background: rgba(0, 0, 0, 0.001) !important;
+  cursor: default !important;
+  pointer-events: auto !important;
+}
+
+/* Glowing full-width line pinned to top of screen */
+#ig-live-progress-line {
+  position: fixed !important;
+  top: 0 !important;
+  left: 0 !important;
+  width: 0% !important;
+  height: 3px !important;
+  background: linear-gradient(90deg, #f09433, #dc2743, #bc1888) !important;
+  box-shadow: 0 0 10px rgba(220, 39, 67, 0.8) !important;
+  z-index: 2147483647 !important;
+  transition: width 0.25s ease-out !important;
+  pointer-events: none !important;
+}
+
+/* Floating HUD Pill centered at top of screen */
+#ig-live-hud-pill {
+  position: fixed !important;
+  top: 20px !important;
+  left: 50% !important;
+  transform: translateX(-50%) !important;
+  z-index: 2147483647 !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 10px !important;
+  background: rgba(20, 20, 22, 0.94) !important;
+  border: 1px solid rgba(255, 255, 255, 0.25) !important;
+  backdrop-filter: blur(12px) !important;
+  -webkit-backdrop-filter: blur(12px) !important;
+  border-radius: 9999px !important;
+  padding: 7px 18px !important;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif !important;
+  font-size: 13px !important;
+  font-weight: 600 !important;
+  color: #ffffff !important;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.75) !important;
+  user-select: none !important;
+  pointer-events: auto !important;
+  animation: igHudSlideIn 0.25s cubic-bezier(0.16, 1, 0.3, 1) !important;
+}
+
+@keyframes igHudSlideIn {
+  from { opacity: 0; transform: translate(-50%, -15px); }
+  to { opacity: 1; transform: translate(-50%, 0); }
+}
+
+.ig-live-pulse-dot {
+  width: 8px !important;
+  height: 8px !important;
+  min-width: 8px !important;
+  max-width: 8px !important;
+  border-radius: 50% !important;
+  background: #ef4444 !important;
+  box-shadow: 0 0 10px #ef4444 !important;
+  animation: igDotPulse 0.9s infinite alternate !important;
+  flex-shrink: 0 !important;
+}
+
+@keyframes igDotPulse {
+  from { opacity: 0.4; transform: scale(0.85); }
+  to { opacity: 1; transform: scale(1.2); }
+}
+
+.ig-live-text {
+  color: #ffffff !important;
+  font-size: 13px !important;
+  white-space: nowrap !important;
+}
+
+.ig-live-stop-btn {
+  background: rgba(239, 68, 68, 0.25) !important;
+  color: #fca5a5 !important;
+  border: 1px solid rgba(239, 68, 68, 0.45) !important;
+  border-radius: 9999px !important;
+  padding: 3px 10px !important;
+  font-size: 11px !important;
+  font-weight: 600 !important;
+  cursor: pointer !important;
+  line-height: 1.2 !important;
+  transition: all 0.15s ease !important;
+}
+
+.ig-live-stop-btn:hover {
+  background: rgba(239, 68, 68, 0.5) !important;
+  color: #ffffff !important;
+}
+
+/* 6. SUMMARY MODAL (Properly Sized Icons & Clean Layout) */
+.ig-summary-grid {
+  display: grid !important;
+  grid-template-columns: 1fr 1fr !important;
+  gap: 10px !important;
+}
+
+.ig-summary-card {
+  background: rgb(24, 24, 24) !important;
+  border: 1px solid rgb(50, 50, 50) !important;
+  border-radius: 10px !important;
+  padding: 12px 14px !important;
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 3px !important;
+}
+
+.ig-summary-card-label {
+  font-size: 11px !important;
+  color: rgb(160, 160, 160) !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.5px !important;
+  font-weight: 500 !important;
+}
+
+.ig-summary-card-value {
+  font-size: 20px !important;
+  font-weight: 700 !important;
+  color: #ffffff !important;
+}
+
+.ig-summary-tags {
+  background: rgb(24, 24, 24) !important;
+  border: 1px solid rgb(50, 50, 50) !important;
+  border-radius: 10px !important;
+  padding: 10px 14px !important;
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 4px !important;
+}
+
+.ig-summary-tags-content {
+  font-size: 12px !important;
+  color: rgb(0, 149, 246) !important;
+  white-space: nowrap !important;
+  overflow: hidden !important;
+  text-overflow: ellipsis !important;
+  line-height: 1.4 !important;
+}
+
+.ig-summary-actions {
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 10px !important;
+  margin-top: 4px !important;
+}
+
+.ig-summary-btn-sidepanel {
+  background: #0095f6 !important;
+  color: #ffffff !important;
+  border: none !important;
+  border-radius: 10px !important;
+  padding: 12px 18px !important;
+  font-size: 14px !important;
+  font-weight: 600 !important;
+  cursor: pointer !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 8px !important;
+  transition: filter 0.15s ease, transform 0.1s ease !important;
+  box-shadow: 0 4px 12px rgba(0, 149, 246, 0.3) !important;
+}
+
+.ig-summary-btn-sidepanel:hover {
+  filter: brightness(1.1) !important;
+  transform: translateY(-1px) !important;
+}
+
+.ig-summary-btn-sidepanel svg {
+  width: 18px !important;
+  height: 18px !important;
+  min-width: 18px !important;
+  max-width: 18px !important;
+  min-height: 18px !important;
+  max-height: 18px !important;
+  flex-shrink: 0 !important;
+}
+
+.ig-summary-btn-copy {
+  background: #10b981 !important;
+  color: #ffffff !important;
+  border: none !important;
+  border-radius: 10px !important;
+  padding: 12px 18px !important;
+  font-size: 14px !important;
+  font-weight: 600 !important;
+  cursor: pointer !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 8px !important;
+  transition: filter 0.15s ease, transform 0.1s ease !important;
+  box-shadow: 0 4px 12px rgba(16, 185, 129, 0.3) !important;
+}
+
+.ig-summary-btn-copy:hover {
+  filter: brightness(1.1) !important;
+  transform: translateY(-1px) !important;
+}
+
+.ig-summary-btn-copy.copied {
+  background: #059669 !important;
+}
+
+/* STRICT ICON SIZING (Fixes huge SVG bug) */
+.ig-summary-btn-copy svg,
+.ig-summary-btn-download svg {
+  width: 18px !important;
+  height: 18px !important;
+  min-width: 18px !important;
+  max-width: 18px !important;
+  min-height: 18px !important;
+  max-height: 18px !important;
+  flex-shrink: 0 !important;
+}
+
+.ig-summary-btn-download {
+  background: rgb(44, 44, 44) !important;
+  color: rgb(240, 240, 240) !important;
+  border: 1px solid rgb(64, 64, 64) !important;
+  border-radius: 10px !important;
+  padding: 10px 18px !important;
+  font-size: 13px !important;
+  font-weight: 600 !important;
+  cursor: pointer !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 7px !important;
+  transition: background 0.15s ease !important;
+}
+
+.ig-summary-btn-download:hover {
+  background: rgb(58, 58, 58) !important;
+}

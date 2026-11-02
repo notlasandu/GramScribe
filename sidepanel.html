@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>GramScribe</title>
+  <link rel="stylesheet" href="sidepanel.css" />
+</head>
+<body>
+  <!-- Header Bar -->
+  <header class="ig-sp-header">
+    <div class="ig-sp-brand">
+      <svg class="ig-sp-logo-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon>
+      </svg>
+      <span class="ig-sp-title">GramScribe</span>
+    </div>
+    <div class="ig-sp-badge" id="post-count-badge">0</div>
+  </header>
+
+  <!-- Profile Banner (if available) -->
+  <div class="ig-sp-profile-banner" id="profile-banner" style="display: none;">
+    <img id="profile-avatar" class="ig-sp-profile-avatar" src="" alt="Profile" />
+    <div class="ig-sp-profile-info">
+      <span class="ig-sp-profile-handle" id="profile-handle">@username</span>
+      <span class="ig-sp-profile-sub" id="profile-stats">0 posts scraped</span>
+    </div>
+    <button class="ig-sp-btn-clear" id="btn-clear" title="Clear list">✕</button>
+  </div>
+
+  <!-- Transcription Tools Bar -->
+  <div class="ig-sp-tools-bar" id="tools-bar" style="display: none;">
+    <button class="ig-sp-btn-transcribe-all" id="btn-transcribe-all" type="button">
+      <svg class="ig-sp-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"></path>
+        <path d="M19 10v2a7 7 0 0 1-14 0v-2"></path>
+        <line x1="12" y1="19" x2="12" y2="23"></line>
+        <line x1="8" y1="23" x2="16" y2="23"></line>
+      </svg>
+      <span id="transcribe-all-text">Transcribe All Reels</span>
+    </button>
+  </div>
+
+  <!-- Warning / Status Toast -->
+  <div class="ig-sp-toast" id="warning-toast" style="display: none;"></div>
+
+  <!-- Content List / Empty State -->
+  <main class="ig-sp-main" id="posts-container">
+    <!-- Batch Extraction Summary (Shown in place of completion modal) -->
+    <div class="ig-sp-summary" id="batch-summary" style="display: none;">
+      <div class="ig-sp-summary-header">
+        <div class="ig-sp-summary-title">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#10b981" stroke-width="2.5" style="width:14px;height:14px;">
+            <polyline points="20 6 9 17 4 12"></polyline>
+          </svg>
+          <span>Batch Extraction Summary</span>
+        </div>
+      </div>
+      <div class="ig-sp-summary-grid">
+        <div class="ig-sp-summary-item">
+          <span class="ig-sp-summary-label">Scraped</span>
+          <span class="ig-sp-summary-value" id="summary-total-posts">0</span>
+        </div>
+        <div class="ig-sp-summary-item">
+          <span class="ig-sp-summary-label">Total Likes</span>
+          <span class="ig-sp-summary-value" id="summary-total-likes">0</span>
+        </div>
+        <div class="ig-sp-summary-item">
+          <span class="ig-sp-summary-label">Reels / Videos</span>
+          <span class="ig-sp-summary-value" id="summary-reels-count">0</span>
+        </div>
+        <div class="ig-sp-summary-item">
+          <span class="ig-sp-summary-label">Photos / Carousels</span>
+          <span class="ig-sp-summary-value" id="summary-photos-count">0</span>
+        </div>
+      </div>
+      <div class="ig-sp-summary-tags" id="summary-tags-container" style="display: none;">
+        <span class="ig-sp-summary-tags-label">Hashtags:</span>
+        <span class="ig-sp-summary-tags-text" id="summary-tags-text"></span>
+      </div>
+    </div>
+
+    <!-- Cards container for post cards -->
+    <div id="cards-list"></div>
+
+    <div class="ig-sp-empty" id="empty-state">
+      <div class="ig-sp-empty-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75">
+          <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+          <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+          <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+        </svg>
+      </div>
+      <h3 class="ig-sp-empty-title">No Posts Scraped Yet</h3>
+      <p class="ig-sp-empty-desc">
+        Click the <b style="color: #0095f6;">⚡ Auto Grab</b> button on any Instagram profile or use <b>Copy JSON</b> on a post.
+      </p>
+    </div>
+  </main>
+
+  <!-- Sticky Bottom Actions -->
+  <footer class="ig-sp-footer" id="footer-actions" style="display: none;">
+    <button class="ig-sp-btn-primary" id="btn-copy-all" type="button">
+      <svg class="ig-sp-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+        <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+      </svg>
+      <span id="btn-copy-text">Copy Full JSON</span>
+    </button>
+    <button class="ig-sp-btn-secondary" id="btn-download" type="button" title="Download JSON file">
+      <svg class="ig-sp-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+        <polyline points="7 10 12 15 17 10"></polyline>
+        <line x1="12" y1="15" x2="12" y2="3"></line>
+      </svg>
+    </button>
+  </footer>
+
+  <script src="sidepanel.js"></script>
+</body>
+</html>
