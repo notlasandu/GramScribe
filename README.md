@@ -8,41 +8,46 @@
 
 ---
 
-## ⚡ Quick 1-Click Setup (Double-Click Helper)
+## ⚡ Installation Options
 
-If you're on **Windows**:
-1. Download and extract **`GramScribe.zip`** from [Releases](../../releases).
-2. **Double-click `install.bat`** inside the folder.
-   * This automatically opens Chrome directly to `chrome://extensions/`.
-3. In Chrome:
-   - Turn **ON** **Developer mode** (toggle in the top-right corner).
-   - Click **Load unpacked** (top-left).
-   - Select the extracted `GramScribe` folder.
-4. Pin **GramScribe** to your browser toolbar (puzzle icon 🧩). You're ready to go!
+### Option 1: Drag & Drop the Packed File (`.crx`)
+1. Download **`GramScribe.crx`** from [Releases](../../releases).
+2. Open your browser and go to `chrome://extensions/` (or `brave://extensions/`, `edge://extensions/`).
+3. Turn **ON** **Developer mode** (toggle in the top-right corner).
+4. **Drag and drop** the `GramScribe.crx` file onto the extensions page.
+5. Click **Add extension** when prompted. Done!
 
 ---
 
-## 🚀 Manual Installation (Chrome, Brave, Edge, Arc)
+### Option 2: 1-Click Setup Helper (Windows)
+1. Download and extract **`GramScribe.zip`** from [Releases](../../releases).
+2. **Double-click `install.bat`** inside the folder (opens `chrome://extensions/` automatically).
+3. In Chrome:
+   - Turn **ON** **Developer mode** (top-right toggle).
+   - Click **Load unpacked** (top-left).
+   - Select the extracted `GramScribe` folder.
 
+---
+
+### Option 3: Manual Installation (Chrome, Brave, Edge, Arc)
 Works on any Chromium browser (Windows, macOS, Linux):
 
 1. **Get the files**:
-   - Download the latest **`GramScribe.zip`** from the [GitHub Releases](../../releases) tab and unzip it, OR clone this repository:
+   - Download and unzip **`GramScribe.zip`** from [Releases](../../releases), OR clone this repository:
      ```bash
-     git clone https://github.com/<your-username>/gramscribe.git
+     git clone https://github.com/notlasandu/GramScribe.git
      ```
 2. **Open Extensions Manager**:
-   - **Chrome**: Navigate to `chrome://extensions/`
-   - **Brave**: Navigate to `brave://extensions/`
-   - **Edge**: Navigate to `edge://extensions/`
+   - **Chrome**: `chrome://extensions/`
+   - **Brave**: `brave://extensions/`
+   - **Edge**: `edge://extensions/`
 3. **Turn on Developer Mode**:
-   - Toggle the **Developer mode** switch in the top-right corner.
+   - Toggle **Developer mode** in the top-right corner.
 4. **Load the Extension**:
    - Click **Load unpacked** in the top-left menu.
-   - Choose the `GramScribe` folder (the folder containing `manifest.json`).
+   - Choose the `GramScribe` folder containing `manifest.json`.
 5. **Pin to Toolbar**:
-   - Click the **Extensions (puzzle piece)** icon in your browser toolbar.
-   - Click the pin icon next to **GramScribe**.
+   - Click the puzzle icon (🧩) in the browser toolbar and pin **GramScribe**.
 
 ---
 
